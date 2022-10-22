@@ -10,6 +10,11 @@
    python3 -m virtualenv amooati_env
    ```
 
+   OR
+   ```bashe
+    virtualenv -p python3 amooati_env
+   ```
+
 ## Activate/Deactivate virtualenv
 ### Activation - Mac/Linux
 ```bashe
