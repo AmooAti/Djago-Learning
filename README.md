@@ -10,3 +10,9 @@
 [Django Apps](Django%20Apps.md)
 
 [Models](Models.md)
+
+[URLs](URLs.md)
+
+[ORM](ORM.md)
+
+[Useful Tools and packages](tools.md)
