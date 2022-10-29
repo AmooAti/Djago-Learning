@@ -10,3 +10,5 @@
 [Django Apps](Django%20Apps.md)
 
 [Models](Models.md)
+
+[URLs](URLs.md)
