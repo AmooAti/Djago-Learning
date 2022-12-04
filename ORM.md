@@ -1,14 +1,14 @@
 # ORM
 
 ## Useful methods
-1. `all`: returns all objects of a model
-2. `filter`: filters a QuerySet base on a condition and return QuerySet
-3. `get`: returns an object and it must be unique otherwise it will raise an exception, also if there isn't any user it will return Model.DoesNotExist
-4. `exclude`: in opposite of filter it will remove objects that satify a condition and it will return a QuerySet
+1. `all`: Returns objects of a model
+2. `filter`: filters a QuerySet base on a condition and returns QuerySet
+3. `get`: returns an object, and it must be unique otherwise it will raise an exception, also if there isn't any user it will return `Model.DoesNotExist`
+4. `exclude`: in opposite of filter, it will remove objects that satify a condition and it will return a QuerySet
 5. `order_by`: Sorts objects
 6. `count`: count QuerySet objects
 7. `values`: It will return QuerySet objects as a dic
-8. `values_list`: like `values` but instead of dic, it will returns an list, if we want just one field we can use `flat` param to make it as list not tuple
+8. `values_list`: like `values` but instead of dict, it will returns an list, if we want just one field we can use `flat` param to make it a list, not a tuple
 
 ## Aggregation
 
@@ -19,7 +19,7 @@ from django.db.models import Avg, Sum, Max, Min
 **Note: **we can use multiple aggregation functions
 
 ### AVG
-By using this method we can get average of our desired property. By default the return key will be `fieldname_avg`
+By using this method, we can get the average of our desired property. By default, the return key will be `fieldname_avg`
 ```python
 >>> User.objects.aggregate(Avg('score'))
 {'score_avg' : 9.8}
@@ -41,7 +41,7 @@ Returns summation of objects:
 ```
 
 ### Count
-With this method we can get count of objects in a model
+With this method, we can get the count of objects in a model
 ```python
 >>> User.objects.aggregate(Count('score'))
 {'score__count': 12}
@@ -50,7 +50,7 @@ With this method we can get count of objects in a model
 ```
 
 ### Max
-As it name says, this method will return the greatest object in our objects
+As its name says, this method will return the greatest object in our objects
 ```python
 >>> User.objects.aggregate(Max('score'))
 {'score__max': 20}
@@ -69,7 +69,7 @@ Opposite of `Max`!!!
 
 ## F & Q
 ### F
-If we want to compare an attribute in model with another attribute in the same model we can use F object
+If we want to compare an attribute in a model with another attribute in the same model, we can use the F object
 
 ```python
 # Model
@@ -86,10 +86,10 @@ class Student(models.Model):
 <QuerySet [...]>
 ```
 
-We can use F and arithmatic expressions together
+We can use F and arithmetic expressions together
 
 ### Q
-we can use this for logical operations like NOT, And, Or
+We can use this for logical operations like NOT, And, Or
 ```python
 >>> conditions = Q(math_score__gte=10) | Q(physics_score__gte=10)
 >>> Student.objects.filter(conditions)
@@ -101,4 +101,15 @@ we can use this for logical operations like NOT, And, Or
 | AND | & |
 | Order | \| |
 | NOT | ~ |
+
+## Manager
+Django, by default, uses a manager called `objects`. We can change that name like below:
+
+```python
+class Books(models.Model):
+    price = models.PositiveIntegerField(default=1000)
+    books = models.Manager()
+```
+
+Then if we try to use `objects`, we will get an `AttributeError`, and we must use our specific name (`books`) instead of `objects`.
 
