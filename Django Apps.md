@@ -4,7 +4,7 @@ Django apps are like modules where add a sub app to project like User, Product, 
 
 To create a Django App use this command `python manage.py startapp first_app`
 
-After create an app you need to add this app to app list in settings.py:
+After create an app you need to add this app to app list in `settings.py`:
 
 Recommended way:
 ```python
